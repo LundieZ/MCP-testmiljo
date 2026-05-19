@@ -4,8 +4,7 @@ A bachelor theses about Model Context Protocol (MCP).
 
 ## Overview
 
-A more detailed explanation of the project. What problem does it solve? What are its main features?
-
+This readme contains a step by step guide on how to set up the test enviroment we used in our thesis.
 ## Prerequisites
 
 Before cloning this repository, ensure you have the following installed:
