@@ -1,0 +1,95 @@
+{
+  "realm": "mcp-realm",
+  "enabled": true,
+  "displayName": "MCP Realm",
+  "sslRequired": "external",
+  "users": [
+    {
+      "username": "non-admin",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Non",
+      "lastName": "Admin",
+      "email": "non.admin@example.com",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password",
+          "temporary": false
+        }
+      ],
+      "realmRoles": ["default-roles-mcp-realm"],
+      "clientRoles": {},
+      "requiredActions": []
+    },
+    {
+      "username": "admin",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Admin",
+      "lastName": "User",
+      "email": "admin@example.com",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "admin",
+          "temporary": false
+        }
+      ],
+      "realmRoles": ["default-roles-mcp-realm"],
+      "clientRoles": {},
+      "requiredActions": []
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "mcp-server",
+      "name": "MCP Server",
+      "description": "Client for MCP server",
+      "enabled": true,
+      "publicClient": false,
+      "protocol": "openid-connect",
+      "directAccessGrantsEnabled": true,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "serviceAccountsEnabled": true,
+      "authorizationServicesEnabled": false,
+      "redirectUris": [
+        "http://localhost:*"
+      ],
+      "webOrigins": ["*"],
+      "secret": "mcp-server-secret",
+      "attributes": {
+        "post.logout.redirect.uris": "http://localhost:*",
+        "oauth2.device.authorization.grant.enabled": "true"
+      },
+      "defaultClientScopes": ["mcp:tools"],
+      "optionalClientScopes": []
+    }
+  ],
+  "clientScopes": [
+    {
+      "name": "mcp:tools",
+      "description": "Scope for MCP tools",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "true",
+        "consent.screen.text": "Access MCP tools"
+      },
+      "protocolMappers": [
+        {
+          "name": "audience-config",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.custom.audience": "http://localhost:3000",
+            "id.token.claim": "false",
+            "access.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ]
+}
